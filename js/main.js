@@ -38,7 +38,7 @@
       ap.addEventListener("blur",function(){ validationCorrect(ap,expRegLast,  "Debe ingresar su apellido", "Debe contener sus dos apellidos empezando por Maýucula"); });
     email.addEventListener("blur",function(){ validationCorrect(email,expRegEmail,  "Debe ingresar su email", "Verifique su e-mail"); });
       pas.addEventListener("blur",function(){
-        validationCorrect(pas,expRegPass,  "Debe ingresar su contraseña", "Debe tener al menos seis carácteres y sólo caracteres");
+        validationCorrect(pas,expRegPass,  "Debe ingresar su contraseña", "Debe tener al menos seis carácteres y sólo caracteres  ó números");
         });
     op.addEventListener("blur",function(){
       var padre =op.parentNode;
@@ -63,7 +63,6 @@
   function validationCorrect(inputL,expReg,mensaje1,mensaje2){
               var padre = inputL.parentNode;
               if(!expReg.test(inputL.value)){
-
                 (!inputL.value ||inputL.value =="") ? mens = mensaje1 : mens =mensaje2;
                 if(padre.lastElementChild.getAttribute("class") =="tooltiptext"){
                     padre.lastElementChild.innerHTML = mens;
