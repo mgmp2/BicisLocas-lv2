@@ -39,8 +39,8 @@ function validateForm(){
     }
 
     //Password
-    if(!expRegPass.test(pas.value) || pas.value == "123456" || pas.value == "098754" || pas.value == ""){
-        mens = "La contraseña debe tener al menos seis carácteres";
+    if(!expRegPass.test(pas.value) || pas.value == "123456" || pas.value == "098754"){
+        (!pas.value)? mens="Debe ingresar su contraseña" :mens = "La contraseña debe tener al menos seis carácteres";
         createTooltip(pas.parentNode, mens);
         cont++;
     }if(op.value=="0"){
@@ -49,6 +49,7 @@ function validateForm(){
         cont++;
 
     } if(cont == 0){
+      validationCorrect();
         alert("Muy bien \n Lleno los datos correctamente");
 
     }
@@ -58,12 +59,23 @@ function createTooltip(padre,mensaje){
   // var padre   = document.getElementById("name").parentNode; se debe traer
 
 
-  if(padre.lastChild.getAttribute("class") =="tooltiptext"){
-    alert("ya te cree");
+  if(padre.lastElementChild.getAttribute("class") =="tooltiptext"){
+    padre.lastElementChild.innerHTML = mensaje;
   }else{
     var span = document.createElement("span");
-    span.innerHTML = mensaje;
     span.setAttribute("class","tooltiptext");
+    span.innerHTML = mensaje;
     padre.appendChild(span);
+  }
+}
+function validationCorrect(){
+  var form = document.getElementById("box-form");
+  var hijos =form.children;
+  for(var i=1; i<hijos.length; i++){
+    var clase = hijos[i].getAttribute("class");
+    var array = clase.split(" ");
+      if(array[1]=="input-box"){
+        hijos[i].lastChild.classList.add("inactive");
+      }
   }
 }
